@@ -1,0 +1,49 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+
+protocol I{{ module_info.name }}CollectionViewManager {
+    func <#name#>(<#parameters#>) -> <#return type#> 
+}
+
+final class {{ module_info.name }}CollectionViewManager: NSObject, I{{ module_info.name }}CollectionViewManager {
+    private unowned var collectionView: UICollectionView
+    
+    init(collectionView: UICollectionView) {
+        self.collectionView = collectionView
+        super.init()
+        setupCollectionView()
+    }
+    
+    func <#name#>(<#parameters#>) -> <#return type#> {
+        <#function body#>
+    }
+}
+
+extension {{ module_info.name }}CollectionViewManager: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withClass: NibReusable.self, for: indexPath)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 0
+    }
+}
+
+extension {{ module_info.name }}CollectionViewManager {
+    private func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+}
